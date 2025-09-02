@@ -26,7 +26,6 @@ public class AnnouncementQueueable implements System.Queueable{
             } else {
                 AnnouncementQueueable announcementQueuable 
                     = new AnnouncementQueueable(announcements);
-            //announcementQueuable.toPost = announcements;
                 System.enqueueJob(announcementQueuable);
                 break;
             }
@@ -35,7 +34,6 @@ public class AnnouncementQueueable implements System.Queueable{
         if ( announcements.size() > 0 && !test.isRunningTest() ){
             AnnouncementQueueable q = 
                 new AnnouncementQueueable(announcements);
-            //q.toPost = announcements;
             System.enqueueJob(q);
         }
     }
