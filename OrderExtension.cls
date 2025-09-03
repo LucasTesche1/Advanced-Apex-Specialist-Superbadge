@@ -25,7 +25,7 @@ public class OrderExtension {
             orderItemMap.put(oi.Product2Id, oi);
             if(oi.Quantity > 0){
                 if(null == pieData){
-                    pieData == new List<ChartHelper.ChartData>();
+                    pieData = new List<ChartHelper.ChartData>();
                 }
                 pieData.add(new chartHelper.ChartData(oi.Product2.Name,oi.Quantity * oi.UnitPrice));
                 total += oi.UnitPrice * oi.Quantity;
@@ -36,7 +36,7 @@ public class OrderExtension {
     void resetSsc(){
         String query = 'SELECT Name, Product2.Family, Product2.Name, Product2Id, UnitPrice, Product2.Quantity_Remaining__c' + ' FROM PricebookEntry WHERE isActive = TRUE';
         
-        if(selectFamily != null && selectFamily != Constants.SELECT_ONE){
+        if(selectedFamily != null && selectedFamily != Constants.SELECT_ONE){
             query += ' AND Product2.Family = \'' + selectedFamily + '\'';
         }
         query += ' ORDER BY Name';
@@ -72,7 +72,7 @@ public class OrderExtension {
     public void OnFieldChange(){
         //ToDo: Implement logic to store the values changed on the page
         for(OrderItem oi : orderItemList){
-            orderItemMap.put(oi.ProductId, oi);
+            orderItemMap.put(oi.Product2Id, oi);
         }
         //      and populate pieData
         pieData = null;
